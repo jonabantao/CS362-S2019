@@ -1279,7 +1279,6 @@ int playAdventurerCard(int currentPlayer, struct gameState *state, int *temphand
     {
       temphand[z] = cardDrawn;
       state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
-      z++;
     }
   }
   while (z - 1 >= 0)
@@ -1293,7 +1292,7 @@ int playAdventurerCard(int currentPlayer, struct gameState *state, int *temphand
 int playSmithyCard(int currentPlayer, struct gameState* state, int handPos)
 {
   //+3 Cards
-  for (int i = 0; i < 3; i++)
+  for (int i = 0; i <= 3; i++)
   {
     drawCard(currentPlayer, state);
   }
@@ -1306,7 +1305,7 @@ int playSmithyCard(int currentPlayer, struct gameState* state, int handPos)
 int playCouncilRoomCard(int currentPlayer, struct gameState *state, int handPos)
 {
   //+4 Cards
-  for (int i = 0; i < 4; i++)
+  for (int i = 0; i <= 4; i++)
   {
     drawCard(currentPlayer, state);
   }
@@ -1339,7 +1338,7 @@ int playGreatHallCard(int currentPlayer, struct gameState *state, int handPos)
   state->numActions++;
 
   //discard card from hand
-  discardCard(handPos, currentPlayer, state, 0);
+  discardCard(handPos, currentPlayer, state, 1);
   return 0;
 }
 
