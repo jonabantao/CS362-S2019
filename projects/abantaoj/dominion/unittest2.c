@@ -80,9 +80,9 @@ void _checkCorrectCosts(char* message, int cardNumber, int expectedCost) {
 }
 
 void _printPass() {
-    printf(" - \033[1;32mPASS\033[0m\n");
+    printf(" - PASS\n");
 }
 
 void _printFail(int expected, int actual) {
-    printf(" - \033[0;31mFAIL\033[0m (Expected Cost: %d, Actual Cost: %d)\n", expected, actual);
+    printf(" - FAIL (Expected Cost: %d, Actual Cost: %d)\n", expected, actual);
 }

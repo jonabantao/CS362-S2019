@@ -69,9 +69,9 @@ void _checkCorrectPlayer(struct gameState* state, int expectedPlayer) {
 }
 
 void _printPass() {
-    printf(" - \033[1;32mPASS\033[0m\n");
+    printf(" - PASS\n");
 }
 
 void _printFail() {
-    printf(" - \033[0;31mFAIL\033[0m\n");
+    printf(" - FAIL\n");
 }

@@ -63,9 +63,9 @@ void _checkCorrectCount(struct gameState* state, int cardNum, int expectedCount)
 }
 
 void _printPass() {
-    printf(" - \033[1;32mPASS\033[0m\n");
+    printf(" - PASS\n");
 }
 
 void _printFail(int expected, int actual) {
-    printf(" - \033[0;31mFAIL\033[0m (Expected Count: %d, Actual Count: %d)\n", expected, actual);
+    printf(" - FAIL (Expected Count: %d, Actual Count: %d)\n", expected, actual);
 }
