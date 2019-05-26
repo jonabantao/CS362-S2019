@@ -35,7 +35,7 @@ int main() {
     // Initialize sample game
     initializeGame(NUM_PLAYER, KINGDOM_CARDS, SEED, &G);
 
-    printf("***Card Test 1: Smithy (2 Player Setup)  - Uses refactored playSmithyCard()***\n");
+    printf("***Card Test 1: Smithy (2 Player Setup)  - Uses refactored smithyCard()***\n");
     testSmithyCard(&G, &TEST_G, KINGDOM_CARDS);
     printf("\n");
 
@@ -45,6 +45,11 @@ int main() {
 void testSmithyCard(struct gameState* state, struct gameState* testState, int kCards[]) {
     int currentPlayer = 0;
     int handPos = 0;
+    int UNUSED_PARAM = 0;
+    int bonus = 0;
+    int choice1 = 0;
+    int choice2 = 0;
+    int choice3 = 0;
 
     // Make copy of the initialized game
     memcpy(testState, state, sizeof(struct gameState));
@@ -53,7 +58,7 @@ void testSmithyCard(struct gameState* state, struct gameState* testState, int kC
     testState->hand[currentPlayer][handPos] = smithy;
 
     // Play the smithy card
-    playSmithyCard(currentPlayer, testState, handPos);
+    smithyCard(smithy, choice1, choice2, choice3, testState, handPos, &bonus, currentPlayer);
 
     // Run tests for single execution of smithy card
     testCurrentPlayerReceivesThreeCards(testState, currentPlayer);

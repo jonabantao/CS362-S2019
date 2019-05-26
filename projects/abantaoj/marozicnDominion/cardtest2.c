@@ -27,6 +27,12 @@ void _assert(int, int);
 void _printPass();
 void _printFail(int, int);
 
+// Unused paramters
+int choice1 = 0;
+int choice2 = 0;
+int choice3 = 0;
+int bonus = 0;
+
 int main() {
     int SEED = 100;
     int NUM_PLAYER = 2;
@@ -62,6 +68,7 @@ void testShouldDrawTwoTreasure(struct gameState* state) {
     int handPos = 0;
     struct gameState testState;
 
+
     // Copy state and play adventurer card
     memcpy(&testState, state, sizeof(struct gameState));
     testState.hand[currentPlayer][handPos] = adventurer;
@@ -72,7 +79,7 @@ void testShouldDrawTwoTreasure(struct gameState* state) {
     testState.deck[currentPlayer][3] = smithy;
     testState.deck[currentPlayer][4] = smithy;
     // Play card
-    playAdventurerCard(currentPlayer, &testState, tempHand);
+    adventurerCard(adventurer, choice1, choice2, choice3, &testState, handPos, &bonus, currentPlayer);
 
     printf("Two treasure should have been drawn, placed in hand, and non-treasure discarded\n");
     printf("\tDECK CARDS REMAINING");
@@ -99,7 +106,7 @@ void testShouldDrawOneTreasure(struct gameState* state) {
     testState.deck[currentPlayer][3] = smithy;
     testState.deck[currentPlayer][4] = smithy;
     // Play card
-    playAdventurerCard(currentPlayer, &testState, tempHand);
+    adventurerCard(adventurer, choice1, choice2, choice3, &testState, handPos, &bonus, currentPlayer);
 
     printf("One treasure should have been drawn, placed in hand, and two non-treasure discarded\n");
     printf("\tDECK CARDS REMAINING");
@@ -130,7 +137,7 @@ void testShouldShuffleDeck(struct gameState* state) {
     testState.discard[currentPlayer][0] = copper;
     testState.discard[currentPlayer][1] = copper;
     // Play card
-    playAdventurerCard(currentPlayer, &testState, tempHand);
+    adventurerCard(adventurer, choice1, choice2, choice3, &testState, handPos, &bonus, currentPlayer);
 
     printf("Two treasure should have been drawn, placed in hand, and non-treasure discarded\n");
     printf("\tDECK CARDS REMAINING");
@@ -151,7 +158,7 @@ void testOtherPlayerUnaffected(struct gameState* state) {
 
     memcpy(&testState, state, sizeof(struct gameState));
     testState.hand[currentPlayer][handPos] = adventurer;
-    playAdventurerCard(currentPlayer, &testState, tempHand);
+    adventurerCard(adventurer, choice1, choice2, choice3, &testState, handPos, &bonus, currentPlayer);
 
     printf("Other player's hand and piles should remain untouched:\n");
     printf("\tDRAW PILE (Hand not yet drawn)");
@@ -171,7 +178,7 @@ void testOtherPilesUnaffected(struct gameState* state, int kCards[]) {
 
     memcpy(&testState, state, sizeof(struct gameState));
     testState.hand[currentPlayer][handPos] = adventurer;
-    playAdventurerCard(currentPlayer, &testState, tempHand);
+    adventurerCard(adventurer, choice1, choice2, choice3, &testState, handPos, &bonus, currentPlayer);
 
     printf("Kingdom Card piles are unaffected (Victory: 8, Others: 10 for two player game)");
     _assert(_checkKingdomPile(state, kCards), 1);
@@ -200,7 +207,7 @@ void testEmbargoTokensUnaffected(struct gameState* state) {
 
     memcpy(&testState, state, sizeof(struct gameState));
     testState.hand[currentPlayer][handPos] = adventurer;
-    playAdventurerCard(currentPlayer, &testState, tempHand);
+    adventurerCard(adventurer, choice1, choice2, choice3, &testState, handPos, &bonus, currentPlayer);
 
     printf("No embargo tokens should be set");
     _assert(_checkEmbargoTokens(&testState), 0);
